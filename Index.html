@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAROENG RSS STORE | Proof of Delivery</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(180deg,#000,#0a0a0a,#000);
+  color:#f5f5f5;
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:40px 20px;
+}
+header img{
+  width:110px;
+  margin-bottom:15px;
+  filter:drop-shadow(0 0 15px white);
+}
+header h1{
+  margin:0;
+  font-size:28px;
+  color:white;
+  text-shadow:0 0 20px rgba(255,255,255,0.8);
+}
+header p{
+  margin-top:8px;
+  color:#ccc;
+  font-size:14px;
+}
+
+/* STATS */
+.stats-section{
+  max-width:800px;
+  margin:20px auto;
+  padding:20px;
+}
+.stats-card{
+  background:linear-gradient(145deg,#0d0d0d,#141414);
+  border-radius:24px;
+  padding:30px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 0 40px rgba(255,255,255,0.15);
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.stat-box{
+  background:#111;
+  padding:20px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.15);
+}
+.stat-number{
+  font-size:28px;
+  font-weight:bold;
+  color:white;
+  text-shadow:0 0 15px rgba(255,255,255,0.8);
+}
+.stat-label{
+  font-size:13px;
+  color:#aaa;
+  margin-top:6px;
+}
+
+/* CONTAINER */
+.container{
+  max-width:800px;
+  margin:auto;
+  padding:20px;
+}
+
+/* POST */
+.post{
+  background:#0f0f0f;
+  border-radius:20px;
+  margin-bottom:30px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 0 25px rgba(255,255,255,0.1);
+  transition:0.3s;
+}
+.post:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 35px rgba(255,255,255,0.4);
+}
+.post img{
+  width:100%;
+  display:block;
+}
+.post-content{
+  padding:20px;
+}
+.kd{
+  font-size:13px;
+  color:white;
+  margin-bottom:8px;
+}
+.post h3{
+  margin:0 0 12px;
+  font-size:18px;
+  color:white;
+}
+.resources{
+  line-height:1.8;
+  font-size:14px;
+  color:#ddd;
+}
+.resources b{
+  color:white;
+}
+.date{
+  margin-top:12px;
+  font-size:13px;
+  color:#aaa;
+}
+
+/* CONTACT */
+.contact-section{
+  max-width:800px;
+  margin:60px auto;
+  padding:20px;
+}
+.contact-card{
+  background:linear-gradient(145deg,#0d0d0d,#141414);
+  border-radius:24px;
+  padding:35px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 0 40px rgba(255,255,255,0.15);
+}
+.contact-card h2{
+  margin-bottom:25px;
+  font-size:22px;
+  color:white;
+  text-shadow:0 0 20px rgba(255,255,255,0.6);
+}
+
+.white-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:14px auto;
+  padding:14px;
+  width:100%;
+  max-width:320px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:15px;
+  color:black;
+  background:white;
+  transition:0.3s;
+  box-shadow:0 0 20px rgba(255,255,255,0.4);
+}
+.white-btn:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 30px white;
+}
+.white-btn img{
+  width:20px;
+  height:20px;
+}
+
+/* FLOATING BUTTON */
+.floating-contact{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:white;
+  color:black;
+  padding:14px 20px;
+  border-radius:50px;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 0 25px white;
+  animation:pulse 2s infinite;
+  z-index:999;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 15px white;}
+  50%{box-shadow:0 0 35px white;}
+  100%{box-shadow:0 0 15px white;}
+}
+
+.footer{
+  text-align:center;
+  font-size:13px;
+  padding:25px;
+  color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="Screenshot_20251109-174045.jpg.png">
+  <h1>WAROENG RSS STORE</h1>
+  <p>Proof of Delivery • Manual Farm • Trusted Seller</p>
+</header>
+
+<div class="stats-section">
+  <div class="stats-card">
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-number" id="totalOrders">0</div>
+        <div class="stat-label">Successful Deliveries</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="totalKingdoms">0</div>
+        <div class="stat-label">Kingdoms Served</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="posts"></div>
+
+<div class="footer">
+© WAROENG RSS STORE
+</div>
+
+<div class="contact-section">
+  <div class="contact-card">
+    <h2>Contact WAROENG RSS STORE</h2>
+
+    <a href="#" class="white-btn">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+      Discord: @harahap97
+    </a>
+
+    <a href="https://wa.me/6282185460409" target="_blank" class="white-btn">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+      WhatsApp: +6282162717626
+    </a>
+
+    <a href="https://t.me/WRSSROK" target="_blank" class="white-btn">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
+      Telegram:  @WRSSROK
+    </a>
+  </div>
+</div>
+
+<a href="https://wa.me/6282162717626" target="_blank" class="floating-contact">
+  Contact Now
+</a>
+
+<script>
+const sheetURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRa4miBcLnxjWzJc71pmxZVpAfMZbri4U5FOWW1wOw3AOQ6_Yt6rIiGnUqRZvF4vYU44ze42B1fgpcy/pub?output=csv";
+
+fetch(sheetURL)
+.then(res=>res.text())
+.then(data=>{
+  const rows=data.trim().split("\n").slice(1).reverse();
+  const posts=document.getElementById("posts");
+
+  let totalOrders=0;
+  let kingdomSet=new Set();
+
+  rows.forEach(row=>{
+    const c=row.split(",");
+    if(!c[0])return;
+
+    totalOrders++;
+    kingdomSet.add(c[0]);
+
+    posts.innerHTML+=`
+      <div class="post">
+        <img src="${c[6]}" alt="Proof">
+        <div class="post-content">
+          <div class="kd">Kingdom KD ${c[0]}</div>
+          <h3>Order Completed Successfully ✅</h3>
+          <div class="resources">
+            🌽 Food: <b>${c[2]}M</b><br>
+            🪵 Wood: <b>${c[3]}M</b><br>
+            🪨 Stone: <b>${c[4]}M</b><br>
+            🪙 Gold: <b>${c[5]}M</b>
+          </div>
+          <div class="date">📅 ${c[1]}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  animateCounter("totalOrders", totalOrders);
+  animateCounter("totalKingdoms", kingdomSet.size);
+});
+
+function animateCounter(id,target){
+  let count=0;
+  const increment=Math.ceil(target/100)||1;
+  const update=setInterval(()=>{
+    count+=increment;
+    if(count>=target){
+      count=target;
+      clearInterval(update);
+    }
+    document.getElementById(id).innerText=count;
+  },20);
+}
+</script>
+
+</body>
+  </html>
